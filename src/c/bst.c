@@ -78,6 +78,32 @@ btnode* find_bst_node(btnode* root, int value) {
   return NULL;
 }
 
+/** Finds and returns the bnode with the integer value that is the closest to the given value */
+btnode* find_closest_bst_node(btnode* root, int value) {
+  btnode* cur_node = root;
+  btnode* next_node = root;
+  if (NULL == root) return NULL;
+
+  while (NULL != cur_node) {
+    if (cur_node->value == value) {
+      return cur_node;
+    }
+
+    if (value < cur_node->value) {
+      next_node = (btnode*) cur_node->left;
+    }
+    else {
+      next_node = (btnode*) cur_node->right;
+    }
+    if (NULL == next_node) {
+      return cur_node;
+    }
+
+    cur_node = next_node;
+  }
+  return NULL;
+}
+
 /** Checks a binary tree to see if it's a proper binary search tree (recursive) */
 int is_bst(btnode* node, int max_value, int min_value) {
   if (node == NULL) return 1;
