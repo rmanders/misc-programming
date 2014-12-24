@@ -86,6 +86,9 @@
 	      <maxIdleTime>60000</maxIdleTime>
 	    </connector>
 	  </connectors>
+	  <webApp>
+	    <contextPath>/</contextPath>
+	  </webApp>
 	</configuration>
       </plugin>
 
