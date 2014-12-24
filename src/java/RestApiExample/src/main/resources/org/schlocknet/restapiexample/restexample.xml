@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-4.1.xsd
+            http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+           http://www.springframework.org/schema/util 
+           http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+  <!-- load .property files -->
+  
+  <bean id="PropertyPlaceholderConfigurer"
+        name="ServicePropertyPlaceholderConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>classpath:org/schlocknet/restapiexample/config/${FLEET}/services.properties</value>
+      </list>
+    </property>
+
+    <!--
+    <property name="properties">
+      <props>
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+        <prop key="hibernate.hbm2ddl.auto"></prop>
+      </props>
+    </property>
+    -->
+  </bean>
+  
+  <!-- load log4j configuration files -->
+  <!--
+  <bean id="log4jConfiguration"
+        class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+    <property name="targetClass">
+      <value>org.apache.log4j.PropertyConfigurator</value>
+    </property>
+    <property name="targetMethod">
+      <value>configure</value>
+    </property>
+    <property name="arguments">
+      <list>
+        <value>classpath:org/schlocknet/restapiexample/config/${FLEET}/log4j.properties</value>
+      </list>
+    </property>
+  </bean>
+  -->
+
+</beans>

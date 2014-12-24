@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	 metadata-complete="false" version="3.0">
+
+  
+  <!-- NOTE: Spring looks for WEB-INF/applicationContext.xml by default -->
+  
+  <display-name>
+    Example Rest API
+  </display-name>
+  
+  <!-- NOTE: This has to go first or you will get a WARN: message from spring that log4j was not init'd properly -->
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>  
+
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:org/schlocknet/restapiexample/config/${FLEET}/log4j.properties</param-value>
+  </context-param>
+
+  <servlet>
+    <servlet-name>RPCServices</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    
+    <!-- This is set below so that spring will look for RPCService.xml in WEB-INF instead of the default "<servlet-name>-servlet.xml" file -->
+    <init-param>
+      <param-name>namespace</param-name>
+      <param-value>RPCServices</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RPCServices</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>
